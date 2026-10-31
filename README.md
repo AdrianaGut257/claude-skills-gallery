@@ -1,16 +1,33 @@
-# React + Vite
+# Claude Skills Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Galería de proyectos de prueba creados con las skills de Claude (de wondelai, en `.agents/skills/`).
 
-Currently, two official plugins are available:
+## Arrancar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Abre la URL que muestra la terminal (normalmente http://localhost:5173). La página de inicio es la galería, y cada tarjeta abre un proyecto.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Estructura
 
-## Expanding the Oxlint configuration
+```
+src/
+  App.jsx              ← rutas: "#/" galería, "#/<slug>" proyecto
+  gallery/             ← página de inicio
+  projects/
+    registry.js        ← lista de proyectos que aparecen en la galería
+    dayflow/           ← proyecto 01: landing de DAYFLOW
+      DayflowLanding.jsx
+      dayflow.css
+      copy-landing.md  ← texto de la landing
+      skills-usadas.md ← skills usadas y cómo se aplicaron
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Añadir un proyecto nuevo
+
+1. Crea una carpeta en `src/projects/<slug>/` con su componente, su CSS y sus `.md`.
+2. Usa un prefijo propio en las clases CSS (DAYFLOW usa `df-`) para que los estilos no choquen con otros proyectos.
+3. Añade una entrada en `src/projects/registry.js` con su número, título, descripción, skills y vista previa.
