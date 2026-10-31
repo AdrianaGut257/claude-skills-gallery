@@ -9,7 +9,6 @@ const dateFormat = new Intl.DateTimeFormat('es-ES', {
 
 export default function Gallery({ projects }) {
   const skillCount = new Set(projects.flatMap((p) => p.skills)).size
-  const nextNumber = String(projects.length + 1).padStart(2, '0')
 
   return (
     <div className="gl">
@@ -83,19 +82,10 @@ export default function Gallery({ projects }) {
                 </a>
               </li>
             ))}
-
-            <li className="gl-empty">
-              <span className="gl-empty-num">{nextNumber}</span>
-              <p>Próximo proyecto</p>
-              <span className="gl-empty-hint">
-                Se añade en <code>src/projects/registry.js</code>
-              </span>
-            </li>
           </ul>
         </main>
 
         <footer className="gl-footer">
-          <span>Cada proyecto vive en su carpeta: <code>src/projects/&lt;nombre&gt;/</code></span>
           <span>© 2026</span>
         </footer>
       </div>
