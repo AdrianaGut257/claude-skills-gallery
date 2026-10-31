@@ -95,3 +95,18 @@ También salió de aquí el **one-liner**.
 - **refactoring-ui** y **web-typography:** útiles cuando se pase al diseño visual.
 - **conversion-optimization** y **create-website:** son recorridos largos que combinan varias skills. Para esta prueba basta con usar sus piezas por separado.
 - **hooked-ux** y **microinteractions:** se centran en el producto, no en la landing.
+
+## La app funcional (`#/dayflow/app`)
+
+"Empieza ahora" abre una app que funciona, sin registro, con las tres funciones que promete la landing:
+
+| Función | Qué hace | Skill que la guía |
+|---------|----------|-------------------|
+| **Organiza** | Escribes en lenguaje natural ("Llamar al banco mañana a las 10, 30 min !") y la app detecta el día, la hora, la duración y la prioridad. Antes de añadir, muestra cómo lo ha entendido | ux-heuristics (estado visible, no me hagas pensar) |
+| **Planifica** | El panel "Tu día" suma las duraciones y te dice si cabe en tus horas disponibles ("Te pasas 1 h. Mueve algo a mañana.") | storybrand (la promesa "un día realista") |
+| **Enfócate** | Modo Enfoque a pantalla completa con temporizador de 15, 25 o 50 min. Se puede pausar, el tiempo aparece en la pestaña, suena un aviso al terminar y "Terminar tarea" la marca como hecha | top-design (momento oscuro, tipografía grande) |
+| Deshacer | Marcar como hecha, eliminar y "Borrar todo" se pueden deshacer desde el aviso, en lugar de pedir confirmación | ux-heuristics (Nielsen #3, control y libertad) |
+| Atajo **N** | Lleva al campo para escribir una tarea nueva | ux-heuristics (Nielsen #7, eficiencia) |
+| Exportar datos | Descarga un .json con tus tareas: cumple la promesa "Exporta tus datos cuando quieras" | cro-methodology (las promesas tienen que ser ciertas) |
+
+Las tareas se guardan solo en el navegador (localStorage). Las tareas de "Mañana" pasan solas a "Hoy" al día siguiente.

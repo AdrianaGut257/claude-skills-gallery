@@ -1,5 +1,8 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
+import { CheckIcon, Mark } from './icons.jsx'
 import './dayflow.css'
+
+const APP_URL = '#/dayflow/app'
 
 /* ---------- Datos ---------- */
 
@@ -58,7 +61,7 @@ const STEPS = [
 const PROMISES = [
   'Sin configuraciones eternas',
   'Exporta tus datos cuando quieras',
-  'Cancela cuando quieras',
+  'Sin cuenta ni registro',
 ]
 
 /* ---------- Utilidades ---------- */
@@ -146,30 +149,6 @@ function useScrolled(threshold = 8) {
 
 /* ---------- Piezas pequeñas ---------- */
 
-function Mark() {
-  return (
-    <svg className="df-mark" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 16.5h18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M6.5 16.5a5.5 5.5 0 0 1 11 0" className="df-mark-sun" />
-    </svg>
-  )
-}
-
-function CheckIcon() {
-  return (
-    <svg viewBox="0 0 16 16" className="df-check-icon" aria-hidden="true">
-      <path
-        d="M3.5 8.5l3 3 6-7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 function Words({ text, start }) {
   return text.split(' ').map((word, i) => (
     <Fragment key={word + i}>
@@ -239,20 +218,10 @@ function FocusTimer() {
 export default function DayflowLanding() {
   const rootRef = useRef(null)
   const problemRef = useRef(null)
-  const toastTimer = useRef(0)
-  const [toast, setToast] = useState(false)
   const scrolled = useScrolled()
 
   useReveal(rootRef)
   useScrollProgress(problemRef)
-  useEffect(() => () => clearTimeout(toastTimer.current), [])
-
-  // No hay registro real: avisamos de que es una demo (estado visible del sistema).
-  const start = () => {
-    setToast(true)
-    clearTimeout(toastTimer.current)
-    toastTimer.current = setTimeout(() => setToast(false), 3200)
-  }
 
   return (
     <div className="df" ref={rootRef}>
@@ -270,9 +239,9 @@ export default function DayflowLanding() {
           <button type="button" className="df-navlink" onClick={() => scrollToId('df-como')}>
             Cómo funciona
           </button>
-          <button type="button" className="df-btn df-btn--sm" onClick={start}>
+          <a className="df-btn df-btn--sm" href={APP_URL}>
             Empieza ahora
-          </button>
+          </a>
         </nav>
       </header>
 
@@ -304,14 +273,14 @@ export default function DayflowLanding() {
                 que no se interpone en tu camino.
               </p>
               <div className="df-actions">
-                <button type="button" className="df-btn" onClick={start}>
+                <a className="df-btn" href={APP_URL}>
                   Empieza ahora <span className="df-arrow" aria-hidden="true">→</span>
-                </button>
+                </a>
                 <button type="button" className="df-link" onClick={() => scrollToId('df-como')}>
                   Ver cómo funciona
                 </button>
               </div>
-              <p className="df-micro">Lista en 2 minutos. Sin tarjeta.</p>
+              <p className="df-micro">Sin registro. Empiezas en segundos.</p>
             </div>
             <div className="df-hero-visual df-fade" style={{ '--d': '1000ms' }}>
               <TodayCard />
@@ -532,10 +501,10 @@ export default function DayflowLanding() {
                 <p>O puedes seguir una semana más apagando fuegos. Tú eliges.</p>
               </div>
               <div className="df-end-actions" data-reveal style={{ '--d': '240ms' }}>
-                <button type="button" className="df-btn df-btn--light" onClick={start}>
+                <a className="df-btn df-btn--light" href={APP_URL}>
                   Empieza ahora <span className="df-arrow" aria-hidden="true">→</span>
-                </button>
-                <p className="df-micro">Lista en 2 minutos. Sin tarjeta.</p>
+                </a>
+                <p className="df-micro">Sin registro. Tus tareas se guardan en este navegador.</p>
               </div>
             </div>
 
@@ -548,10 +517,6 @@ export default function DayflowLanding() {
           </div>
         </section>
       </main>
-
-      <div className={`df-toast${toast ? ' is-visible' : ''}`} role="status" aria-live="polite">
-        {toast ? 'Esto es una demo: aquí empezaría el registro.' : ''}
-      </div>
     </div>
   )
 }

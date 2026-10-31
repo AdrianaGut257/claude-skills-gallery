@@ -8,7 +8,7 @@
 **One-liner** (para usar en redes, bio, pitch):
 > DAYFLOW ayuda a quienes sienten que el día se les escapa a reunir tareas y tiempo en un solo lugar, para que puedan centrarse en lo que importa.
 
-Los textos marcados con **[confirmar]** dependen de datos del producto que todavía no tenemos (precio, funciones exactas, testimonios). No se deben publicar sin verificarlos.
+Los textos marcados con **[confirmar]** dependen de datos que todavía no tenemos (testimonios reales). No se deben publicar sin verificarlos.
 
 ---
 
@@ -38,7 +38,7 @@ Organiza tus tareas, protege tu tiempo y trabaja con calma. Todo en una sola app
 **Botón principal:** `Empieza ahora`
 **Enlace secundario:** `Ver cómo funciona ↓`
 
-**Texto bajo el botón:** Lista en 2 minutos. Sin tarjeta. **[confirmar]**
+**Texto bajo el botón:** Sin registro. Empiezas en segundos.
 
 > **Nota de diseño:** el titular es el protagonista. Tipografía display muy grande (ratio 10:1 frente al texto), mucho aire alrededor y nada más compitiendo. Animación de entrada: palabras del titular escalonadas, después subtítulo, después botón.
 
@@ -64,7 +64,7 @@ Así que acabas el día con la cabeza llena y la sensación de no haber avanzado
 
 **Organiza**
 ### Todo en un solo lugar.
-Escribe lo que tienes en mente. DAYFLOW lo ordena por día y prioridad para que no tengas que recordarlo. **[confirmar funcionamiento]**
+Escribe lo que tienes en mente. DAYFLOW lo ordena por día y prioridad para que no tengas que recordarlo.
 
 **Planifica**
 ### Un día realista, no una lista infinita.
@@ -72,7 +72,7 @@ Dale un hueco a cada tarea y comprueba de un vistazo si tu día cabe en tu día.
 
 **Enfócate**
 ### Una cosa a la vez.
-El modo Enfoque oculta todo lo demás hasta que terminas lo que tienes delante. **[confirmar nombre de la función]**
+El modo Enfoque oculta todo lo demás hasta que terminas lo que tienes delante.
 
 > **Nota de diseño:** tres bloques, pero no tres tarjetas iguales en fila. Composición asimétrica, con un bloque más grande que los otros, y cada uno acompañado de una captura real de la app, no de iconos genéricos.
 
@@ -91,7 +91,7 @@ Quédate con lo esencial. El resto espera su turno.
 **3. Trabaja con calma.**
 Una tarea a la vez, sin distracciones.
 
-**Sin configuraciones eternas · Exporta tus datos cuando quieras · Cancela cuando quieras** **[confirmar]**
+**Sin configuraciones eternas · Exporta tus datos cuando quieras · Sin cuenta ni registro**
 
 **Lo que dicen quienes ya lo usan:**
 
@@ -112,7 +112,7 @@ Imagina cerrar el portátil sabiendo que hiciste lo que importaba, y que lo dem�
 O puedes seguir una semana más apagando fuegos. Tú eliges.
 
 **Botón principal:** `Empieza ahora`
-**Texto bajo el botón:** Lista en 2 minutos. Sin tarjeta. **[confirmar]**
+**Texto bajo el botón:** Sin registro. Tus tareas se guardan en este navegador.
 
 > **Nota de diseño:** cambio de color de fondo para marcar el final (por ejemplo, de crema claro a tinta oscura). Titular grande otra vez, botón con el único color de acento de la página.
 
@@ -125,7 +125,7 @@ O puedes seguir una semana más apagando fuegos. Tú eliges.
 | "Otra app más que aprender" (esfuerzo) | "Lista en 2 minutos", plan de 3 pasos | 1, 4 |
 | "¿Sirve para alguien como yo?" (encaje) | Problema descrito con situaciones cotidianas | 2 |
 | "¿Me puedo fiar?" (confianza) | Testimonios reales **[pendiente]** | 4 |
-| "¿Cuánto cuesta?" (precio) | "Sin tarjeta" **[confirmar si hay plan gratuito]** | 1, 5 |
+| "¿Cuánto cuesta?" (precio) | "Sin registro", la app se usa al momento | 1, 5 |
 | "Ya lo haré otro día" (momento) | "Mañana puede ser un día más tranquilo" | 5 |
 
 ## Guía visual rápida

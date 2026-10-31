@@ -184,6 +184,7 @@ html[data-page='gallery'] body {
   position: relative;
   max-width: 10ch;
   font-family: var(--pv-font);
+  font-weight: var(--pv-weight, 400);
   font-size: clamp(2.2rem, 3.6vw, 3.2rem);
   line-height: 0.95;
   letter-spacing: -0.02em;

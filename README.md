@@ -19,9 +19,16 @@ src/
   gallery/             ← página de inicio
   projects/
     registry.js        ← lista de proyectos que aparecen en la galería
-    dayflow/           ← proyecto 01: landing de DAYFLOW
+    dayflow/           ← proyecto 01: landing de DAYFLOW + app funcional
+      index.jsx        ← "#/dayflow" landing, "#/dayflow/app" app
       DayflowLanding.jsx
       dayflow.css
+      app/             ← la app: tareas, panel "Tu día" y modo Enfoque
+    basta/             ← proyecto 02: juego ¡Basta! (tutti frutti en grupo)
+      index.jsx        ← fases del juego
+      logic.js         ← letras, categorías y puntuación
+      game.js          ← estado de la partida y guardado
+      skills-usadas.md
       copy-landing.md  ← texto de la landing
       skills-usadas.md ← skills usadas y cómo se aplicaron
 ```

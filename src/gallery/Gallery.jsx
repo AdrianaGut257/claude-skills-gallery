@@ -58,6 +58,7 @@ export default function Gallery({ projects }) {
                       '--pv-fg': p.preview.fg,
                       '--pv-deco': p.preview.deco,
                       '--pv-font': p.preview.font,
+                      '--pv-weight': p.preview.weight ?? 400,
                     }}
                   >
                     <span className="gl-preview-text">{p.preview.text}</span>

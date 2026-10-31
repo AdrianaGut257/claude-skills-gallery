@@ -19,6 +19,26 @@ export const projects = [
       font: "'Instrument Serif', serif",
       text: 'Haz espacio para lo que importa.',
     },
-    component: lazy(() => import('./dayflow/DayflowLanding.jsx')),
+    // "#/dayflow" abre la landing y "#/dayflow/app" la app funcional
+    component: lazy(() => import('./dayflow/index.jsx')),
+  },
+  {
+    slug: 'basta',
+    number: '02',
+    title: '¡Basta!',
+    kind: 'Juego',
+    date: '2026-10-31',
+    description:
+      'Tutti frutti para jugar en grupo con un solo móvil: ruleta 3D de letras, turnos, puntuación automática y podio final.',
+    skills: ['hooked-ux', 'microinteractions', 'design-everyday-things', 'refactoring-ui', 'contagious'],
+    preview: {
+      bg: '#15122E',
+      fg: '#FFD23F',
+      deco: '#7B6BFF',
+      font: "'Rubik', sans-serif",
+      weight: 900,
+      text: '¡Basta!',
+    },
+    component: lazy(() => import('./basta/index.jsx')),
   },
 ]

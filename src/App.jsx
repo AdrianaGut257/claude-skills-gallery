@@ -2,23 +2,26 @@ import { Suspense, useEffect, useState } from 'react'
 import Gallery from './gallery/Gallery.jsx'
 import { projects } from './projects/registry.js'
 
-// Rutas con hash: "#/" es la galería y "#/<slug>" abre un proyecto.
-function getSlug() {
-  return window.location.hash.replace(/^#\/?/, '').split('/')[0]
+// Rutas con hash: "#/" es la galería, "#/<slug>" abre un proyecto
+// y "#/<slug>/<subruta>" se pasa al proyecto (p. ej. "#/dayflow/app").
+function getRoute() {
+  return window.location.hash.replace(/^#\/?/, '')
 }
 
 export default function App() {
-  const [slug, setSlug] = useState(getSlug)
+  const [route, setRoute] = useState(getRoute)
 
   useEffect(() => {
     const onHashChange = () => {
-      setSlug(getSlug())
+      setRoute(getRoute())
       window.scrollTo(0, 0)
     }
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
 
+  const [slug, ...rest] = route.split('/')
+  const subpath = rest.join('/')
   const project = projects.find((p) => p.slug === slug)
 
   useEffect(() => {
@@ -40,7 +43,7 @@ export default function App() {
         </span>
       </div>
       <Suspense fallback={<div className="page-loading">Cargando…</div>}>
-        <Page />
+        <Page subpath={subpath} />
       </Suspense>
       <BackButton />
     </>
