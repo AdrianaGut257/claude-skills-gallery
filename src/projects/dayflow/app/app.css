@@ -1,0 +1,953 @@
+/* App de DAYFLOW · reutiliza los tokens de .df (dayflow.css) y usa el prefijo dfa- */
+
+.dfa {
+  --dfa-warn: #b5533c;
+}
+
+.dfa-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.dfa-kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  font-family: var(--df-mono);
+  font-size: 0.8em;
+  font-style: normal;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* ---------- Cabecera ---------- */
+
+.dfa-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px var(--gutter);
+  border-bottom: 1px solid var(--df-line);
+  background: var(--df-bg);
+}
+
+.dfa-header .df-logo,
+.dfa-header .df-navlink {
+  color: var(--df-ink);
+  text-decoration: none;
+}
+
+.dfa-header .df-navlink {
+  color: var(--df-ink-2);
+}
+
+/* ---------- Distribución ---------- */
+
+.dfa-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    'head aside'
+    'add aside'
+    'lists aside';
+  gap: 0 clamp(24px, 4vw, 64px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vh, 64px) var(--gutter) 120px;
+}
+
+.dfa-head {
+  grid-area: head;
+  margin-bottom: 28px;
+}
+
+.dfa-add-wrap {
+  grid-area: add;
+}
+
+.dfa-lists {
+  grid-area: lists;
+  min-width: 0;
+}
+
+.dfa-aside {
+  grid-area: aside;
+  position: sticky;
+  top: 96px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dfa-date {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--df-ink-2);
+}
+
+.dfa-date::first-letter {
+  text-transform: uppercase;
+}
+
+.dfa-title {
+  margin: 4px 0 8px;
+  font-family: var(--df-serif);
+  font-weight: 400;
+  font-size: clamp(4rem, 9vw, 7.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.025em;
+}
+
+.dfa-summary {
+  font-size: 16px;
+  color: var(--df-ink-2);
+}
+
+/* ---------- Añadir tarea ---------- */
+
+.dfa-add {
+  padding: 8px 8px 14px;
+  border: 1px solid var(--df-line);
+  border-radius: 22px;
+  background: var(--df-surface);
+  box-shadow: 0 30px 60px -40px rgba(28, 27, 25, 0.35);
+  transition:
+    border-color 0.3s var(--ease-out),
+    box-shadow 0.3s var(--ease-out);
+}
+
+.dfa-add:focus-within {
+  border-color: var(--df-accent);
+  box-shadow:
+    0 0 0 3px rgba(35, 78, 67, 0.14),
+    0 30px 60px -40px rgba(28, 27, 25, 0.35);
+}
+
+.dfa-add-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dfa-add input {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  padding: 0 14px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 18px;
+  color: var(--df-ink);
+}
+
+.dfa-add input::placeholder {
+  color: var(--df-ink-3);
+}
+
+.dfa-add input:focus-visible {
+  outline: none;
+}
+
+.dfa-add-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 6px 8px 0;
+}
+
+.dfa-preview {
+  flex: 1;
+  min-width: 220px;
+  font-size: 14px;
+  color: var(--df-ink-2);
+}
+
+.dfa-preview strong {
+  color: var(--df-ink);
+}
+
+.dfa-welcome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-top: 16px;
+  padding: 18px 20px;
+  border: 1.5px dashed var(--df-ink-3);
+  border-radius: 18px;
+  font-size: 15px;
+  color: var(--df-ink-2);
+}
+
+/* ---------- Botones de la app ---------- */
+
+.df-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.dfa-text-btn {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--df-ink-2);
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out);
+}
+
+.dfa-text-btn:hover {
+  background: var(--df-sand);
+  color: var(--df-ink);
+}
+
+.dfa-danger,
+.dfa-danger:hover {
+  color: var(--dfa-warn);
+}
+
+.dfa-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(246, 243, 238, 0.24);
+  border-radius: 999px;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--df-bg);
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease-out);
+}
+
+.dfa-ghost-btn:hover {
+  background: rgba(246, 243, 238, 0.08);
+}
+
+.dfa-ghost-btn .df-check-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.dfa-ghost-btn--light {
+  border-color: var(--df-line);
+  background: var(--df-surface);
+  color: var(--df-ink);
+}
+
+.dfa-ghost-btn--light:hover {
+  background: var(--df-sand);
+}
+
+/* Selector segmentado */
+.dfa-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  border: 1px solid var(--df-line);
+  border-radius: 999px;
+  background: var(--df-bg);
+}
+
+.dfa-seg button {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--df-ink-2);
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out);
+}
+
+.dfa-seg button:hover {
+  color: var(--df-ink);
+}
+
+.dfa-seg button[aria-pressed='true'] {
+  background: var(--df-ink);
+  color: var(--df-bg);
+}
+
+.dfa-seg--sm button {
+  min-height: 32px;
+  padding: 0 12px;
+}
+
+@media (pointer: coarse) {
+  .dfa-seg button,
+  .dfa-seg--sm button {
+    min-height: 40px;
+  }
+
+  .dfa-shortcut {
+    display: none;
+  }
+}
+
+/* ---------- Listas ---------- */
+
+.dfa-list {
+  margin-top: 48px;
+}
+
+.dfa-list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--df-ink);
+}
+
+.dfa-list-head h2 {
+  font-family: var(--df-serif);
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.dfa-list-head span {
+  font-size: 13px;
+  color: var(--df-ink-2);
+}
+
+.dfa-tasks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dfa-task {
+  border-bottom: 1px solid var(--df-line);
+  animation: dfa-enter 0.6s var(--ease-out);
+}
+
+.dfa-task-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 64px;
+  padding: 8px 0;
+}
+
+.dfa-check {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.dfa-check .df-check {
+  width: 22px;
+  height: 22px;
+}
+
+.dfa-check:hover .df-check {
+  border-color: var(--df-accent);
+}
+
+.dfa-check:active .df-check {
+  transform: scale(0.85);
+}
+
+.is-done .dfa-check .df-check {
+  border-color: var(--df-accent);
+  background: var(--df-accent);
+}
+
+.is-done .df-check-icon {
+  animation: df-pop 0.5s var(--ease-out);
+}
+
+.dfa-task-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dfa-task-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  transition: color 0.4s var(--ease-out);
+}
+
+.is-done .dfa-task-text {
+  color: var(--df-ink-3);
+  text-decoration: line-through;
+}
+
+.dfa-task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  font-size: 13px;
+  color: var(--df-ink-2);
+}
+
+.dfa-warn {
+  font-weight: 600;
+  color: var(--dfa-warn);
+}
+
+.dfa-task-actions {
+  display: flex;
+  flex: none;
+  gap: 2px;
+}
+
+.dfa-empty {
+  padding: 20px 0;
+  font-size: 15px;
+  color: var(--df-ink-2);
+}
+
+/* Editor */
+.dfa-editor {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 16px 34px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--df-surface);
+  animation: dfa-enter 0.5s var(--ease-out);
+}
+
+.dfa-editor-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+}
+
+.dfa-field {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+.dfa-field > label,
+.dfa-field-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--df-ink-2);
+}
+
+.dfa-input {
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--df-line);
+  border-radius: 12px;
+  background: var(--df-bg);
+  font: inherit;
+  font-size: 16px;
+  color: var(--df-ink);
+}
+
+.dfa-input:focus-visible {
+  outline: 2px solid var(--df-accent);
+  outline-offset: 1px;
+}
+
+.dfa-input--time {
+  width: 140px;
+}
+
+.dfa-editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.dfa-editor-actions .dfa-danger {
+  margin-left: auto;
+}
+
+/* ---------- Panel "Tu día" ---------- */
+
+.dfa-panel {
+  padding: 24px;
+  border: 1px solid var(--df-line);
+  border-radius: 24px;
+  background: var(--df-surface);
+}
+
+.dfa-panel h2 {
+  margin-bottom: 18px;
+  font-family: var(--df-serif);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.dfa-capacity-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dfa-bar {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--df-line);
+}
+
+.dfa-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--df-accent);
+  transform-origin: left;
+  transition: transform 0.8s var(--ease-quart);
+}
+
+.dfa-bar.is-over span {
+  background: var(--dfa-warn);
+}
+
+.dfa-msg {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--df-ink-2);
+}
+
+.dfa-msg.is-over {
+  font-weight: 600;
+  color: var(--dfa-warn);
+}
+
+.dfa-note {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--df-ink-2);
+}
+
+.dfa-timeline {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dfa-timeline li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.dfa-timeline time {
+  padding-top: 8px;
+  font-family: var(--df-mono);
+  font-size: 12px;
+  color: var(--df-ink-2);
+}
+
+.dfa-slot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--df-accent);
+  border-radius: 8px;
+  background: var(--df-bg);
+}
+
+.dfa-slot strong {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.dfa-slot span {
+  flex: none;
+  color: var(--df-ink-2);
+}
+
+.dfa-hours {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--df-line);
+  font-size: 14px;
+}
+
+.dfa-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.dfa-stepper span {
+  min-width: 3ch;
+  text-align: center;
+}
+
+.dfa-stepper button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--df-line);
+  border-radius: 50%;
+  background: var(--df-bg);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dfa-stepper button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Tarjeta oscura del modo Enfoque */
+.dfa-focus-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--df-ink);
+  color: var(--df-bg);
+}
+
+.dfa-focus-card :focus-visible {
+  outline-color: var(--df-accent-soft);
+}
+
+.dfa-focus-card-label,
+.dfa-focus-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--df-accent-soft);
+}
+
+.dfa-focus-card-task {
+  margin: 12px 0 20px;
+  font-family: var(--df-serif);
+  font-size: 30px;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.dfa-focus-card-empty {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--df-cream-2);
+}
+
+/* ---------- Datos ---------- */
+
+.dfa-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid var(--df-line);
+  font-size: 14px;
+  color: var(--df-ink-2);
+}
+
+.dfa-data-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- Aviso con deshacer ---------- */
+
+.dfa-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 150;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: min(560px, calc(100vw - 32px));
+  padding: 10px 10px 10px 20px;
+  border-radius: 999px;
+  background: var(--df-ink);
+  color: var(--df-bg);
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 12px);
+  transition:
+    opacity 0.4s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+
+.dfa-toast.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.dfa-toast:empty {
+  padding: 0;
+}
+
+.dfa-toast span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dfa-toast button {
+  flex: none;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--df-accent-soft);
+  color: var(--df-ink);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dfa-toast button:focus-visible {
+  outline: 2px solid var(--df-accent-soft);
+  outline-offset: 2px;
+}
+
+/* ---------- Modo Enfoque (pantalla completa) ---------- */
+
+.dfa-focus {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  padding: 20px var(--gutter) 24px;
+  overflow-y: auto;
+  background: var(--df-ink);
+  color: var(--df-bg);
+  animation: dfa-focus-in 0.6s var(--ease-out);
+}
+
+.dfa-focus :focus-visible {
+  outline-color: var(--df-accent-soft);
+}
+
+.dfa-focus-top,
+.dfa-focus-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.dfa-focus-brand {
+  font-family: var(--df-serif);
+  font-size: 24px;
+}
+
+.dfa-focus-center {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.dfa-focus-label.is-finished .df-pulse {
+  animation: none;
+}
+
+.dfa-focus-task {
+  max-width: 18ch;
+  margin-top: 16px;
+  font-family: var(--df-serif);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.dfa-focus-timer {
+  margin-top: clamp(24px, 5vh, 48px);
+  font-family: var(--df-mono);
+  font-size: clamp(4rem, 15vw, 10rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.dfa-focus-progress {
+  height: 2px;
+  margin: 16px 0 28px;
+  background: rgba(246, 243, 238, 0.14);
+}
+
+.dfa-focus-progress span {
+  display: block;
+  height: 100%;
+  background: var(--df-accent-soft);
+  transform-origin: left;
+  transition: transform 0.25s linear;
+}
+
+.dfa-seg--dark {
+  align-self: flex-start;
+  margin-bottom: 20px;
+  border-color: rgba(246, 243, 238, 0.2);
+  background: transparent;
+}
+
+.dfa-seg--dark button {
+  color: var(--df-cream-2);
+}
+
+.dfa-seg--dark button:hover {
+  color: var(--df-bg);
+}
+
+.dfa-seg--dark button[aria-pressed='true'] {
+  background: var(--df-bg);
+  color: var(--df-ink);
+}
+
+.dfa-focus-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.dfa-focus-foot {
+  font-size: 14px;
+  color: rgba(246, 243, 238, 0.6);
+}
+
+/* ---------- Animaciones ---------- */
+
+@keyframes dfa-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes dfa-focus-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+  .dfa-main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-template-areas:
+      'head'
+      'add'
+      'aside'
+      'lists';
+  }
+
+  .dfa-aside {
+    position: static;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dfa-add-row {
+    flex-wrap: wrap;
+  }
+
+  .dfa-add-row .df-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dfa-task-main {
+    flex-wrap: wrap;
+  }
+
+  .dfa-task-actions {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: -8px;
+  }
+
+  .dfa-editor {
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .dfa-toast {
+    bottom: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dfa *,
+  .dfa-focus {
+    animation: none !important;
+    transition: none !important;
+  }
+}

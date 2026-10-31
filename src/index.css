@@ -1,0 +1,138 @@
+/* Estilos globales mínimos. Cada proyecto trae sus propios estilos con un prefijo de clase. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+/* Franja superior de cada proyecto: de dónde vienes y cómo volver */
+.project-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 36px;
+  padding: 0 clamp(16px, 4vw, 56px);
+  background: #151514;
+  color: rgba(242, 241, 236, 0.66);
+  font: 500 12px/1 'JetBrains Mono', ui-monospace, monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  color: #f2f1ec;
+  text-decoration: none;
+}
+
+.project-bar a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.project-bar a:focus-visible {
+  outline: 2px solid #f2f1ec;
+  outline-offset: 2px;
+}
+
+/* Botón flotante para volver a la galería (aparece al hacer scroll) */
+.back-to-gallery {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(21, 21, 20, 0.88);
+  color: #f2f1ec;
+  font: 600 14px/1 'Manrope', system-ui, sans-serif;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.back-to-gallery.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.back-to-gallery.is-visible:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .back-to-gallery {
+    padding: 0;
+  }
+
+  .back-to-gallery-text {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-gallery {
+    transition: none;
+  }
+}
+
+.back-to-gallery:focus-visible {
+  outline: 2px solid #151514;
+  outline-offset: 3px;
+}
+
+.page-loading {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font: 500 14px 'Manrope', system-ui, sans-serif;
+  color: rgba(21, 21, 20, 0.6);
+}
