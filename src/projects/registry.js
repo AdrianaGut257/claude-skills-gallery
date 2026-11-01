@@ -41,4 +41,24 @@ export const projects = [
     },
     component: lazy(() => import('./basta/index.jsx')),
   },
+  {
+    slug: 'florecer',
+    number: '03',
+    title: 'Florecer',
+    kind: 'App de hábitos',
+    date: '2026-11-01',
+    description:
+      'Cada hábito diminuto hace crecer una flor. Si un día fallas, la flor no se marchita: te espera. Incluye caso de estudio.',
+    skills: ['improve-retention', 'lean-ux', 'steve-jobs-design-review'],
+    preview: {
+      bg: '#FCE8EF',
+      fg: '#2A1B22',
+      deco: '#F3B3CB',
+      font: "'Fraunces', serif",
+      weight: 600,
+      text: 'Tu jardín de hoy.',
+    },
+    // "#/florecer" abre la app y "#/florecer/caso" el caso de estudio
+    component: lazy(() => import('./florecer/index.jsx')),
+  },
 ]

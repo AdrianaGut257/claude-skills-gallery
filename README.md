@@ -31,6 +31,11 @@ src/
       skills-usadas.md
       copy-landing.md  ← texto de la landing
       skills-usadas.md ← skills usadas y cómo se aplicaron
+    florecer/          ← proyecto 03: app de hábitos Florecer + caso de estudio
+      index.jsx        ← "#/florecer" app, "#/florecer/caso" caso de estudio
+      store.js         ← hábitos, etapas de la flor y guardado
+      Flower.jsx       ← la flor en SVG
+      skills-usadas.md
 ```
 
 ## Añadir un proyecto nuevo
