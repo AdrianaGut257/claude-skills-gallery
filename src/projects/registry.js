@@ -81,4 +81,34 @@ export const projects = [
     // "#/petalo" es el inicio y "#/petalo/<página>" cada página de la documentación
     component: lazy(() => import('./petalo/index.jsx')),
   },
+  {
+    slug: 'lumbre',
+    number: '05',
+    title: 'Café Lumbre',
+    kind: 'Landing 3D',
+    date: '2026-11-01',
+    description:
+      'Landing de una cafetería con una taza 3D en three.js que humea y se gira con el dedo, carta interactiva con pedido por WhatsApp e identidad de marca.',
+    skills: [
+      'frontend-design',
+      'emil-design-eng',
+      'web-animation-design',
+      'baseline-ui',
+      'threejs-fundamentals',
+      'threejs-geometry',
+      'threejs-materials',
+      'threejs-lighting',
+      'threejs-shaders',
+      'threejs-interaction',
+      'threejs-performance',
+    ],
+    preview: {
+      bg: '#140D09',
+      fg: '#FFF1DC',
+      deco: '#7A3E2B',
+      font: "'Gloock', serif",
+      text: 'Al calor de la lumbre.',
+    },
+    component: lazy(() => import('./lumbre/index.jsx')),
+  },
 ]

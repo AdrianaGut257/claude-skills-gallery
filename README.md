@@ -41,6 +41,10 @@ src/
       ds/              ← el sistema: tokens, contraste, componentes e iconos
       docs/            ← las páginas de la documentación
       skills-usadas.md
+    lumbre/            ← proyecto 05: landing 3D de Café Lumbre (three.js)
+      cupScene.js      ← la escena 3D de la taza
+      Menu.jsx         ← carta interactiva y pedido por WhatsApp
+      skills-usadas.md
 ```
 
 ## Añadir un proyecto nuevo
