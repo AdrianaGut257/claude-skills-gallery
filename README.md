@@ -36,6 +36,11 @@ src/
       store.js         ← hábitos, etapas de la flor y guardado
       Flower.jsx       ← la flor en SVG
       skills-usadas.md
+    petalo/            ← proyecto 04: sistema de diseño Pétalo DS + documentación
+      index.jsx        ← "#/petalo" inicio, "#/petalo/<página>" cada página
+      ds/              ← el sistema: tokens, contraste, componentes e iconos
+      docs/            ← las páginas de la documentación
+      skills-usadas.md
 ```
 
 ## Añadir un proyecto nuevo

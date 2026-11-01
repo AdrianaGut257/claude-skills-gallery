@@ -61,4 +61,24 @@ export const projects = [
     // "#/florecer" abre la app y "#/florecer/caso" el caso de estudio
     component: lazy(() => import('./florecer/index.jsx')),
   },
+  {
+    slug: 'petalo',
+    number: '04',
+    title: 'Pétalo DS',
+    kind: 'Sistema de diseño',
+    date: '2026-11-01',
+    description:
+      'Sistema de diseño con tokens en dos capas, modo oscuro, cinco componentes, comprobador de contraste WCAG y su documentación.',
+    skills: ['web-typography', 'software-design-philosophy', 'technical-documentation'],
+    preview: {
+      bg: '#F7F3FF',
+      fg: '#1E1A27',
+      deco: '#C9A7FF',
+      font: "'Geist', sans-serif",
+      weight: 650,
+      text: 'Pétalo.',
+    },
+    // "#/petalo" es el inicio y "#/petalo/<página>" cada página de la documentación
+    component: lazy(() => import('./petalo/index.jsx')),
+  },
 ]
