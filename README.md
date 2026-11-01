@@ -1,6 +1,6 @@
 # Claude Skills Gallery
 
-Galería de proyectos de prueba creados con las skills de Claude (de wondelai, en `.agents/skills/`).
+Galería de proyectos de prueba creados con las skills de Claude (de wondelai, CloudAI-X y Vercel Labs, en `.agents/skills/`).
 
 ## Arrancar
 
@@ -17,6 +17,9 @@ Abre la URL que muestra la terminal (normalmente http://localhost:5173). La pág
 src/
   App.jsx              ← rutas: "#/" galería, "#/<slug>" proyecto
   gallery/             ← página de inicio
+    LabScene.jsx       ← lámina 3D: cada proyecto es una molécula (React Three Fiber)
+    molecules.js       ← forma, color y colocación de cada molécula
+    skills-usadas.md
   projects/
     registry.js        ← lista de proyectos que aparecen en la galería
     dayflow/           ← proyecto 01: landing de DAYFLOW + app funcional

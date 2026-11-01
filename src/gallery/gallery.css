@@ -45,19 +45,22 @@ html[data-page='gallery'] body {
   color: var(--ink-2);
 }
 
-.gl-header {
+/* ---------- Portada: título + lámina 3D ---------- */
+
+.gl-hero {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
-  align-items: end;
-  padding: clamp(56px, 12vh, 140px) 0 clamp(48px, 8vh, 96px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  column-gap: 24px;
+  padding: clamp(32px, 6vh, 72px) 0 clamp(56px, 9vh, 104px);
 }
 
 .gl-title {
-  grid-column: 1 / span 8;
+  grid-column: 1 / span 5;
+  grid-row: 1;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(3.4rem, 10vw, 10rem);
+  font-size: clamp(3.4rem, 7vw, 7.4rem);
   line-height: 0.88;
   letter-spacing: -0.03em;
   animation: gl-rise 1.1s var(--ease) both;
@@ -69,8 +72,231 @@ html[data-page='gallery'] body {
 }
 
 .gl-aside {
-  grid-column: 9 / span 4;
+  grid-column: 1 / span 4;
+  grid-row: 2;
+  align-self: end;
+  padding-bottom: 46px; /* alinea las cifras con el pie de la lámina */
   animation: gl-rise 1.1s var(--ease) 0.2s both;
+}
+
+.gl-plate {
+  grid-column: 6 / -1;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  animation: gl-fade 1.2s var(--ease) 0.1s both;
+}
+
+.gl-stage {
+  position: relative;
+  height: clamp(480px, 70vh, 700px);
+  isolation: isolate;
+}
+
+/* Papel milimetrado: puntos que se desvanecen hacia los bordes */
+.gl-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(21, 21, 20, 0.2) 1px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 50%, #000 30%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Marcas de esquina, como las de una lámina impresa */
+.gl-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--ink);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.gl-corner:nth-of-type(1) {
+  top: 0;
+  left: 0;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.gl-corner:nth-of-type(2) {
+  top: 0;
+  right: 0;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.gl-corner:nth-of-type(3) {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.gl-corner:nth-of-type(4) {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+.gl-stage-loading,
+.gl-stage-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.gl-lab {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.985);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 1.2s var(--ease);
+}
+
+.gl-lab.is-ready {
+  opacity: 1;
+  transform: none;
+}
+
+.gl-lab-tags {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Etiqueta de cada molécula: la posición la pone la escena en cada fotograma */
+.gl-lab-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding-top: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  pointer-events: auto;
+  opacity: 0;
+  will-change: transform;
+}
+
+.gl-lab.is-ready .gl-lab-tag {
+  animation: gl-tag-in 0.5s var(--ease) both;
+  animation-delay: calc(var(--i) * 140ms + 900ms);
+}
+
+/* Línea guía entre la molécula y su etiqueta */
+.gl-lab-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 9px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.gl-lab-tag-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(250, 249, 246, 0.86);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.16s ease-out,
+    color 0.16s ease-out,
+    border-color 0.16s ease-out;
+}
+
+.gl-lab-tag-num {
+  color: var(--ink-2);
+  transition: color 0.16s ease-out;
+}
+
+.gl-lab-tag-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+.gl-lab-tag.is-active .gl-lab-tag-name {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.gl-lab-tag.is-active .gl-lab-tag-num {
+  color: rgba(242, 241, 236, 0.6);
+}
+
+.gl-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.gl-caption-fig {
+  color: var(--ink);
+}
+
+.gl-legend {
+  display: inline-flex;
+  gap: 18px;
+}
+
+.gl-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.gl-legend svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+
+.gl-caption-hint {
+  margin-left: auto;
 }
 
 .gl-intro {
@@ -143,7 +369,9 @@ html[data-page='gallery'] body {
     box-shadow 0.6s var(--ease);
 }
 
-.gl-card:hover {
+/* "is-linked": la molécula de este proyecto está resaltada en la lámina */
+.gl-card:hover,
+.gl-card.is-linked {
   transform: translateY(-4px);
   box-shadow: 0 30px 60px -30px rgba(21, 21, 20, 0.3);
 }
@@ -277,10 +505,73 @@ html[data-page='gallery'] body {
   }
 }
 
-@media (max-width: 900px) {
+@keyframes gl-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes gl-tag-in {
+  from {
+    opacity: 0;
+    translate: -50% 6px;
+  }
+  to {
+    opacity: 1;
+    translate: -50% 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gl-lab-tag:hover .gl-lab-tag-name {
+    border-color: var(--ink);
+  }
+}
+
+@media (max-width: 960px) {
+  .gl-hero {
+    grid-template-rows: auto;
+  }
+
   .gl-title,
+  .gl-plate,
   .gl-aside {
     grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .gl-plate {
+    margin: 28px 0 36px;
+  }
+
+  .gl-stage {
+    height: clamp(380px, 108vw, 520px);
+  }
+
+  .gl-aside {
+    padding-bottom: 0;
+  }
+
+  .gl-caption-hint {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .gl-top span:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .gl-lab-tag-name {
+    gap: 5px;
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .gl-lab-tag-meta {
+    display: none;
   }
 }
 
@@ -289,5 +580,9 @@ html[data-page='gallery'] body {
   .gl *::before {
     animation: none !important;
     transition: none !important;
+  }
+
+  .gl-lab-tag {
+    opacity: 1;
   }
 }
