@@ -18,6 +18,7 @@ const PALETTES = {
   lumbre: { nucleus: '#9A4A2F', atoms: ['#FFB347', '#FFF1DC', '#2A1A12'] },
   ecco: { nucleus: '#2E6B47', atoms: ['#7FBF8E', '#FF9F6E'] },
   sakura: { nucleus: '#FF8FC7', atoms: ['#1D1430', '#8FD3FF'] },
+  pulso: { nucleus: '#2A1A22', atoms: ['#FF7AA8', '#FFD36E'] },
 }
 
 export function paletteFor(project) {

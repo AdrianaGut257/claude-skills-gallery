@@ -111,7 +111,8 @@ export default function Gallery({ projects }) {
           <div className="gl-aside">
             <p className="gl-intro">
               Proyectos de prueba hechos con skills de Claude. En la lámina, cada molécula es un
-              proyecto y cada átomo, una de sus skills. Ninguna se repite entre proyectos.
+              proyecto y cada átomo, una de sus skills. Casi ninguna se repite: Pulso
+              reutiliza tres a propósito.
             </p>
             <dl className="gl-stats">
               <div>

@@ -150,4 +150,25 @@ export const projects = [
     // "#/sakura" es la lista y "#/sakura/descubrir" las recomendaciones
     component: lazy(() => import('./sakura/index.jsx')),
   },
+  {
+    slug: 'pulso',
+    number: '08',
+    title: 'Pulso',
+    kind: 'Dashboard + web',
+    date: '2026-11-13',
+    description:
+      'Panel de proyectos, clientes y reportes con un gráfico en vivo y reportes en segundos, y la web del producto que lo enseña funcionando.',
+    // Excepción pedida: reutiliza estas tres skills de proyectos anteriores
+    skills: ['impeccable', 'design-taste-frontend', 'animate'],
+    preview: {
+      bg: '#2A1A22',
+      fg: '#FFF',
+      deco: '#FF7AA8',
+      font: "'Bricolage Grotesque', sans-serif",
+      weight: 700,
+      text: 'Todo el equipo, un panel.',
+    },
+    // "#/pulso" es la web y "#/pulso/panel[/<sección>]" el panel
+    component: lazy(() => import('./pulso/index.jsx')),
+  },
 ]
