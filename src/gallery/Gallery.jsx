@@ -57,7 +57,7 @@ export default function Gallery({ projects }) {
       <div className="gl-inner">
         <div className="gl-top">
           <span>Claude Skills Gallery</span>
-          <span>Skills de wondelai, CloudAI-X y Vercel Labs</span>
+          <span>Skills de wondelai, Vercel Labs, Emil Kowalski y otros</span>
         </div>
 
         <header className="gl-hero">

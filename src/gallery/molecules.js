@@ -16,6 +16,7 @@ const PALETTES = {
   florecer: { nucleus: '#EE93B4', atoms: ['#FBE3EC', '#4A2A39'] },
   petalo: { nucleus: '#B48CFF', atoms: ['#F4EEFF', '#2A2338'] },
   lumbre: { nucleus: '#9A4A2F', atoms: ['#FFB347', '#FFF1DC', '#2A1A12'] },
+  ecco: { nucleus: '#2E6B47', atoms: ['#7FBF8E', '#FF9F6E'] },
 }
 
 export function paletteFor(project) {

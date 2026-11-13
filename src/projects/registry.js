@@ -111,4 +111,24 @@ export const projects = [
     },
     component: lazy(() => import('./lumbre/index.jsx')),
   },
+  {
+    slug: 'ecco',
+    number: '06',
+    title: 'Ecco',
+    kind: 'E-commerce',
+    date: '2026-11-13',
+    description:
+      'Tienda de moda sostenible: cada prenda lleva una etiqueta verde con el agua y el CO₂ que ahorra, y la bolsa suma tu impacto.',
+    skills: ['impeccable', 'design-taste-frontend', 'animate', 'gestures'],
+    preview: {
+      bg: '#E8F5EA',
+      fg: '#10241A',
+      deco: '#7FBF8E',
+      font: "'Archivo', sans-serif",
+      weight: 760,
+      text: 'El impacto, en la etiqueta.',
+    },
+    // "#/ecco" es la tienda y "#/ecco/<prenda>" su ficha
+    component: lazy(() => import('./ecco/index.jsx')),
+  },
 ]
