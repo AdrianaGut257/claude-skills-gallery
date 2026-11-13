@@ -131,4 +131,23 @@ export const projects = [
     // "#/ecco" es la tienda y "#/ecco/<prenda>" su ficha
     component: lazy(() => import('./ecco/index.jsx')),
   },
+  {
+    slug: 'sakura',
+    number: '07',
+    title: 'Sakura List',
+    kind: 'App animada',
+    date: '2026-11-13',
+    description:
+      'Tracker de anime hecho para lucir la animación: pétalos con viento, carteles que se transforman en su ficha, baraja de recomendaciones que se arrastra y celebraciones al terminar.',
+    skills: ['choreograph', 'animation-performance', 'animation-vocabulary', 'ask-sonner', 'find-animation-opportunities'],
+    preview: {
+      bg: '#1D1430',
+      fg: '#FF8FC7',
+      deco: '#3A2363',
+      font: "'Dela Gothic One', sans-serif",
+      text: 'Sakura List',
+    },
+    // "#/sakura" es la lista y "#/sakura/descubrir" las recomendaciones
+    component: lazy(() => import('./sakura/index.jsx')),
+  },
 ]
